@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-delve/delve/pkg/dwarf/util"
+	"github.com/deyuhua/delve/pkg/dwarf/util"
 )
 
 type Location struct {

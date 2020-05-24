@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
-	"github.com/go-delve/delve/pkg/proc"
+	"github.com/deyuhua/delve/pkg/proc"
 	"golang.org/x/arch/x86/x86asm"
 )
 

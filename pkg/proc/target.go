@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/go-delve/delve/pkg/goversion"
+	"github.com/deyuhua/delve/pkg/goversion"
 )
 
 var (

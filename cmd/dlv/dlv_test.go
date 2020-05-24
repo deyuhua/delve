@@ -19,10 +19,10 @@ import (
 	"testing"
 	"time"
 
-	protest "github.com/go-delve/delve/pkg/proc/test"
-	"github.com/go-delve/delve/pkg/terminal"
-	"github.com/go-delve/delve/service/dap/daptest"
-	"github.com/go-delve/delve/service/rpc2"
+	protest "github.com/deyuhua/delve/pkg/proc/test"
+	"github.com/deyuhua/delve/pkg/terminal"
+	"github.com/deyuhua/delve/service/dap/daptest"
+	"github.com/deyuhua/delve/service/rpc2"
 	"golang.org/x/tools/go/packages"
 )
 
@@ -61,7 +61,7 @@ func projectRoot() string {
 	for _, curpath := range gopaths {
 		// Detects "gopath mode" when GOPATH contains several paths ex. "d:\\dir\\gopath;f:\\dir\\gopath2"
 		if strings.Contains(wd, curpath) {
-			return filepath.Join(curpath, "src", "github.com", "go-delve", "delve")
+			return filepath.Join(curpath, "src", "github.com", "deyuhua", "delve")
 		}
 	}
 	val, err := exec.Command("go", "list", "-mod=", "-m", "-f", "{{ .Dir }}").Output()
@@ -174,7 +174,7 @@ func testOutput(t *testing.T, dlvbin, output string, delveCmds []string) (stdout
 			// Sometimes delve on Travis on Windows can't remove the built binary before
 			// exiting and gets an "Access is denied" error when trying.
 			// Just ignore it.
-			// See: https://travis-ci.com/go-delve/delve/jobs/296325131
+			// See: https://travis-ci.com/deyuhua/delve/jobs/296325131
 			return
 		}
 		t.Errorf("running %q: file %v was not deleted\nstdout is %q, stderr is %q", delveCmds, debugbin, stdout, stderr)
@@ -194,9 +194,9 @@ func getDlvBin(t *testing.T) (string, string) {
 	}
 
 	dlvbin := filepath.Join(tmpdir, "dlv.exe")
-	out, err := exec.Command("go", "build", "-o", dlvbin, "github.com/go-delve/delve/cmd/dlv").CombinedOutput()
+	out, err := exec.Command("go", "build", "-o", dlvbin, "github.com/deyuhua/delve/cmd/dlv").CombinedOutput()
 	if err != nil {
-		t.Fatalf("go build -o %v github.com/go-delve/delve/cmd/dlv: %v\n%s", dlvbin, err, string(out))
+		t.Fatalf("go build -o %v github.com/deyuhua/delve/cmd/dlv: %v\n%s", dlvbin, err, string(out))
 	}
 
 	return dlvbin, tmpdir
@@ -255,7 +255,7 @@ func TestContinue(t *testing.T) {
 // TestChildProcessExitWhenNoDebugInfo verifies that the child process exits when dlv launch the binary without debug info
 func TestChildProcessExitWhenNoDebugInfo(t *testing.T) {
 	if runtime.GOOS == "darwin" {
-		t.Skip("test skipped on darwin, see https://github.com/go-delve/delve/pull/2018 for details")
+		t.Skip("test skipped on darwin, see https://github.com/deyuhua/delve/pull/2018 for details")
 	}
 
 	if _, err := exec.LookPath("ps"); err != nil {
@@ -453,7 +453,7 @@ func TestTypecheckRPC(t *testing.T) {
 		Mode: packages.NeedSyntax | packages.NeedTypesInfo | packages.NeedName | packages.NeedCompiledGoFiles | packages.NeedTypes,
 		Fset: fset,
 	}
-	pkgs, err := packages.Load(cfg, "github.com/go-delve/delve/service/rpc2")
+	pkgs, err := packages.Load(cfg, "github.com/deyuhua/delve/service/rpc2")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -461,7 +461,7 @@ func TestTypecheckRPC(t *testing.T) {
 	var serverMethods map[string]*types.Func
 	var info *types.Info
 	packages.Visit(pkgs, func(pkg *packages.Package) bool {
-		if pkg.PkgPath != "github.com/go-delve/delve/service/rpc2" {
+		if pkg.PkgPath != "github.com/deyuhua/delve/service/rpc2" {
 			return true
 		}
 		t.Logf("package found: %v", pkg.PkgPath)

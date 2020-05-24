@@ -17,12 +17,12 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/go-delve/delve/pkg/gobuild"
-	"github.com/go-delve/delve/pkg/logflags"
-	"github.com/go-delve/delve/pkg/proc"
-	"github.com/go-delve/delve/service"
-	"github.com/go-delve/delve/service/api"
-	"github.com/go-delve/delve/service/debugger"
+	"github.com/deyuhua/delve/pkg/gobuild"
+	"github.com/deyuhua/delve/pkg/logflags"
+	"github.com/deyuhua/delve/pkg/proc"
+	"github.com/deyuhua/delve/service"
+	"github.com/deyuhua/delve/service/api"
+	"github.com/deyuhua/delve/service/debugger"
 	"github.com/google/go-dap"
 	"github.com/sirupsen/logrus"
 )

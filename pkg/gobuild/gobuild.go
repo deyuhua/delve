@@ -7,8 +7,8 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/go-delve/delve/pkg/config"
-	"github.com/go-delve/delve/pkg/goversion"
+	"github.com/deyuhua/delve/pkg/config"
+	"github.com/deyuhua/delve/pkg/goversion"
 )
 
 // Remove the file at path and issue a warning to stderr if this fails.
