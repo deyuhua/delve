@@ -167,7 +167,7 @@ func initialize(dbp *nativeProcess) error {
 		}
 		comm = match[1]
 	}
-	dbp.os.comm = strings.ReplaceAll(string(comm), "%", "%%")
+	// dbp.os.comm = strings.ReplaceAll(string(comm), "%", "%%")
 	return nil
 }
 
